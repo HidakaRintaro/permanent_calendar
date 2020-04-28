@@ -44,9 +44,21 @@ h1 {
   line-height: 50px;
 }
 
-h2 {
-  margin: 0 auto 24px;
+.day_data {
+  display: flex;
   width: 50%;
+  margin: 0 auto 24px;
+}
+
+h2 {
+  margin-right: 50px;
+  width: 50%;
+}
+
+.day_data p {
+  color: rgb(255, 0, 0);
+  line-height: 36px;
+  font-size: 1.3rem;
 }
 
 .msg {

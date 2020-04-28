@@ -1,6 +1,6 @@
 <?php
 
-if ( !isset($_GET['year']) || !isset($_GET['month']) || !isset($_GET['day']) ) {
+if ( empty($_GET['year']) || empty($_GET['month']) || empty($_GET['day']) ) {
   header('location: ./index.php');
   exit;
 }
@@ -9,6 +9,7 @@ if ( !isset($_GET['year']) || !isset($_GET['month']) || !isset($_GET['day']) ) {
 $year = $_GET['year'];
 $month = $_GET['month'];
 $day = $_GET['day'];
+$hol = '';
 $week_ja = ['日', '月', '火', '水', '木', '金', '土'];
 $content = '';
 $schedule_list = [];
@@ -19,6 +20,17 @@ $sch_sp = ["\r\n", "\n", "\r", " ", "　"];
 $update_flg = 0;
 $err_msg = '';
 $cmp_msg = '';
+
+// 祝日の名前の取得
+$fp = fopen('./csv/holiday.csv', 'r');
+while ($row = fgets($fp)) {
+  $row = explode(',', $row);
+  if ( ($year.'-'.$month.'-'.$day) == $row[0] ) {
+    $hol = $row[1];
+    break;
+  }
+}
+fclose($fp);
 
 // スケジュールファイルから保存済みのデータの読込
 $fp = fopen('./csv/schedule.csv', 'r');
@@ -32,6 +44,7 @@ while ($row = fgets($fp)) {
     $update_flg = 1;
   }
 }
+fclose($fp);
 
 // 登録や更新、削除ボタンを押されたとき
 if (isset($_POST['submit'])) {
@@ -59,6 +72,7 @@ if (isset($_POST['submit'])) {
             $max_key = $row[0];
           }
         }
+        fclose($fp);
         $p_key = $max_key + 1;
       }
   
@@ -138,7 +152,10 @@ if (isset($_POST['submit'])) {
   </div>
   <p class="red msg"><?php echo $err_msg; ?></p>
   <p class="green msg"><?php echo $cmp_msg; ?></p>
-  <h2><?php echo $year.'年'.$month.'月'.$day.'日('.$week_ja[date('w', strtotime($year.'-'.$month.'-'.$day))].')'; ?></h2>
+  <div class="day_data">
+    <h2><?php echo $year.'年'.$month.'月'.$day.'日('.$week_ja[date('w', strtotime($year.'-'.$month.'-'.$day))].')'; ?></h2>
+    <p><?php echo $hol; ?></p>
+  </div>
   <form method="post">
     <textarea name="content" id="content"><?php echo $content; ?></textarea>
 <?php if ($update_flg) : ?>

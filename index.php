@@ -6,6 +6,7 @@
   $week_list = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'hol'];
   $week_days = '';
   $start_flg = 0;
+  $sch_data = [];
 
   // 受け取った年月を代入
   if (!empty($_GET['year']) && !empty($_GET['month'])) {
@@ -45,22 +46,34 @@
       if ($start_flg && $day <= $end_day) {
         $date[$i][] = $day;
         
+        // スケジュールが存在するか確認
+        $sch_data[$i][$j] = '';
+        $fp = fopen('./csv/schedule.csv', 'r');
+        while ($row = fgets($fp)) {
+          $row = explode(',', $row);
+          if ($row[1] == ($year.'-'.$month.'-'.$day)) {
+            $sch_data[$i][$j] = '★';
+          }
+        }
+        fclose($fp);
+
         // 祝日の時配列に祝日用のクラス名を代入
         $fp = fopen('./csv/holiday.csv', 'r');
         while ($row = fgets($fp)) {
           $row = explode(',', $row);
-          if ($row[0] == ($year.'-'.$month.'-'.$day)) $bg_list[$day] = $week_list[7];
+          if ($row[0] == ($year.'-'.$month.'-'.$day)) $bg_list[$i][] = $week_list[7];
         }
         fclose($fp);
         // 祝日ではないとき各曜日のクラス名を配列に代入
-        if (!isset($bg_list[$day])) $bg_list[$day] = $week_list[$j];
+        if (!isset($bg_list[$i][$j])) $bg_list[$i][] = $week_list[$j];
         $day++;
       }
       // 日付の入らないマスに空文字を代入
       else {
         $date[$i][] = '';
+        $bg_list[$i][] = '';
+        $sch_data[$i][] = '';
       }
-
     }
   }
 
@@ -82,11 +95,11 @@
     <tr>
       <th class="red">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="blue">土</th>
     </tr>
-<?php foreach ($date as $row) : ?>
+<?php foreach ($date as $key1 => $row) : ?>
     <tr>
-<?php   foreach ($row as $val) : ?>
+<?php   foreach ($row as $key2 => $val) : ?>
 <?php $url = $val == '' ? './' : './entry.php?year='.$year.'&month='.$month.'&day='.$val ; ?>
-      <td class="<?php echo $bg_list[$val]; ?>"><a href="<?php echo $url; ?>"><?php echo $val; ?></a></td>
+      <td class="<?php echo $bg_list[$key1][$key2]; ?>"><a href="<?php echo $url; ?>"><?php echo $val.$sch_data[$key1][$key2]; ?></a></td>
 <?php   endforeach; ?>
     </tr>
 <?php endforeach; ?>
