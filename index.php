@@ -70,7 +70,7 @@
 <head>
   <meta charset="UTF-8">
   <title>万年カレンダー</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <h1><?php echo $year; ?>年<?php echo $month; ?>月</h1>

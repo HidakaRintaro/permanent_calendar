@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.red {
+  color: rgb(255, 0, 0);
+}
+
+.blue {
+  color: rgb(0, 0, 255);
+}
+
+.sun, .hol{
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.sat {
+  background-color: rgba(0, 0, 255, 0.3);
+}
+
+.sun > a, .hol > a {
+  color: rgb(255, 0, 0);
+}
+
+.sat > a {
+  color: rgb(0, 0, 255);
+}
+
+h1 {
+  margin: 24px auto;
+  text-align: center;
+}
+
+.move_link {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto 24px;
+}
+
+.move_link > p {
+  width: 6rem;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(70, 89, 255);
+  cursor: pointer;
+}
+
+.move_link > p > a {
+  color: #ffffff;
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+table, tr, th, td{
+  border: 1px solid rgb(0, 0, 0);
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+table, tr {
+  width: 80%;
+}
+
+th, td {
+  height: 60px;
+  text-align: center;
+}
+
+th {
+  background-color: rgb(233, 233, 233);
+}
+
+td > a {
+  display: block;
+  line-height: 60px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+td > a:hover {
+  background-color: rgba(255, 255, 0, 0.5);
+}

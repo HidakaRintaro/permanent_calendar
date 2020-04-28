@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.red {
+  color: rgb(255, 0, 0);
+  border-color: rgb(255, 0, 0);
+}
+
+.green {
+  color: rgb(0, 128, 0);
+  border-color: rgb(0, 128, 0);
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 24px auto;
+}
+
+.top_link {
+  width: 20%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(70, 70, 255);
+  cursor: pointer;
+}
+
+.top_link > a {
+  color: #ffffff;
+  display: block;
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+h1 {
+  line-height: 50px;
+}
+
+h2 {
+  margin: 0 auto 24px;
+  width: 50%;
+}
+
+.msg {
+  margin: 0 auto 24px;
+  padding: 5px 10px;
+  width: 50%;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.msg:empty {
+  display: none;
+}
+
+textarea {
+  display: block;
+  width: 50%;
+  height: 200px;
+  margin: 0 auto 24px;
+  padding: 10px;
+  resize: none;
+  border-color: rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+form > div {
+  display: flex;
+  width: 50%;
+  margin: 0 auto 24px;
+}
+
+button {
+  width: 20%;
+  height: 50px;
+  margin-right: 20px;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#btn_green {
+  background-color: rgb(45, 200, 45);
+}
+
+#btn_red {
+  background-color: rgb(255, 70, 70);
+}
