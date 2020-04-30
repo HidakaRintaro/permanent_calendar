@@ -1,90 +1,127 @@
-* {
+:root {
+  --ruler: 8px;
+  --font-color: #7a7b83;
+  --color-main: #ebecf0;
+  --color-shadow: #b9bdcb;
+  --color-white: #ffffff;
+  --color-red: #ae1100;
+  --color-blue: #0011ae;
+  --color-green: #0eae00;
+}
+
+body, div, p, table, tr, th, td {
+  font-size: calc(var(--ruler) * 2);
   margin: 0;
   padding: 0;
-  outline: none;
+  box-sizing: border-box;
 }
 
-.red {
-  color: rgb(255, 0, 0);
+body, html {
+  background-color: var(--color-main);
 }
 
-.blue {
-  color: rgb(0, 0, 255);
-}
-
-.sun, .hol{
-  background-color: rgba(255, 0, 0, 0.3);
-}
-
-.sat {
-  background-color: rgba(0, 0, 255, 0.3);
-}
-
-.sun > a, .hol > a {
-  color: rgb(255, 0, 0);
-}
-
-.sat > a {
-  color: rgb(0, 0, 255);
-}
-
-h1 {
-  margin: 24px auto;
-  text-align: center;
-}
-
-.move_link {
+.link_list {
   display: flex;
   justify-content: space-between;
   width: 80%;
-  margin: 0 auto 24px;
+  margin: calc(var(--ruler) * 3) auto;
 }
 
-.move_link > p {
+.link_list p {
   width: 6rem;
-  height: 30px;
-  border: none;
-  border-radius: 10px;
-  background-color: rgb(70, 89, 255);
+  height: calc(var(--ruler) * 4);
+}
+
+.link_list a {
+  color: var(--font-color);
+  display: block;
+  width: 100%;
+  line-height: calc(var(--ruler) * 4);
+  border-radius: calc(var(--ruler) * 2);
+  box-shadow: -5px -5px 20px var(--color-white),  5px 5px 20px var(--color-shadow);
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px var(--color-white);
   cursor: pointer;
 }
 
-.move_link > p > a {
-  color: #ffffff;
-  display: block;
-  width: 100%;
-  line-height: 30px;
-  text-align: center;
-  text-decoration: none;
+.link_list a:hover {
+  box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
 }
 
-table, tr, th, td{
-  border: 1px solid rgb(0, 0, 0);
-  border-collapse: collapse;
-  margin: 0 auto;
+.link_list a:active {
+  box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
 }
 
 table, tr {
   width: 80%;
+  text-shadow: 1px 1px 1px var(--color-white);
+  color: var(--font-color);
 }
 
-th, td {
-  width: calc(100%/7);
-  height: 60px;
+table {
+  margin: 0 auto;
+  border-radius: calc(var(--ruler) * 2);
+  border-spacing: 10px;
+  box-shadow: -5px -5px 20px var(--color-white),  5px 5px 20px var(--color-shadow);
   text-align: center;
 }
 
-th {
-  background-color: rgb(233, 233, 233);
+.thead th {
+  font-size: 2rem;
 }
 
-td > a {
+td {
+  font-weight: bold;
+  width: calc(100% / 7);
+  height: calc(var(--ruler) * 8);
+  padding: calc(var(--ruler) * .5) calc(var(--ruler) * 1.5) 0;
+  border-radius: calc(var(--ruler) * 2);
+  box-shadow: inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
+}
+
+td a {
+  color: var(--font-color);
   display: block;
-  line-height: 60px;
-  color: rgb(0, 0, 0);
+  width: 100%;
+  height: calc(var(--ruler) * 8);
   text-decoration: none;
+  cursor: pointer;
 }
 
-td > a:hover {
-  background-color: rgba(255, 255, 0, 0.5);
+.sun, .hol, .sun a, .hol a {
+  color: var(--color-red);
+}
+
+.sat, .sat a {
+  color: var(--color-blue);
+}
+
+td .td_1st_line {
+  display: flex;
+  justify-content: space-between;
+  height: calc(var(--ruler) * 4);
+}
+
+td .day {
+  font-size: calc(var(--ruler) * 2.5);
+}
+
+td .holiday {
+  color: var(--font-color);
+  font-size: var(--ruler);
+}
+
+td .sch_flg {
+  color: var(--font-color);
+  text-align: right;
+  height: calc(var(--ruler) * 4);
+}
+
+td:hover {
+  box-shadow: inset 5px 5px 10px var(--color-shadow), inset -8px -8px 10px var(--color-white);
+}
+
+td:hover .td_inner {
+  transform: scale(0.95);
 }
