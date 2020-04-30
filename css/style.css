@@ -6,10 +6,9 @@
   --color-white: #ffffff;
   --color-red: #ae1100;
   --color-blue: #0011ae;
-  --color-green: #0eae00;
 }
 
-body, div, p, table, tr, th, td {
+body, div, p, a, table, tr, th, td {
   font-size: calc(var(--ruler) * 2);
   margin: 0;
   padding: 0;
@@ -75,9 +74,6 @@ td {
   font-weight: bold;
   width: calc(100% / 7);
   height: calc(var(--ruler) * 8);
-  padding: calc(var(--ruler) * .5) calc(var(--ruler) * 1.5) 0;
-  border-radius: calc(var(--ruler) * 2);
-  box-shadow: inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
 }
 
 td a {
@@ -85,6 +81,9 @@ td a {
   display: block;
   width: 100%;
   height: calc(var(--ruler) * 8);
+  padding: calc(var(--ruler) * .5) calc(var(--ruler) * 1.5) 0;
+  border-radius: calc(var(--ruler) * 2);
+  box-shadow: inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
   text-decoration: none;
   cursor: pointer;
 }
@@ -118,10 +117,10 @@ td .sch_flg {
   height: calc(var(--ruler) * 4);
 }
 
-td:hover {
+td a:hover {
   box-shadow: inset 5px 5px 10px var(--color-shadow), inset -8px -8px 10px var(--color-white);
 }
 
-td:hover .td_inner {
+td a:hover .td_inner {
   transform: scale(0.95);
 }

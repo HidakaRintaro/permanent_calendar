@@ -20,7 +20,7 @@
   $week_ary = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
   // URLから値(年月)の受け取り
-  if ( !empty(!empty($_GET['year']) && !empty($_GET['month'])) ) {
+  if ( !empty($_GET['year']) && !empty($_GET['month']) ) {
     $year = intval($_GET['year']);
     $month = intval($_GET['month']);
   }
@@ -112,7 +112,7 @@
 <?php foreach ($date_ary as $row => $weekly) : ?>
     <tr class="day_row">
 <?php   foreach ($weekly as $col => $day) : ?>
-<?php $entry_pash = empty($day) ? './' : './entry.php?year='.$year.'&month='.$month.'&day='.$day ; ?>
+<?php $entry_pash = empty($day) ? './?year='.$year.'&month='.$month : './entry.php?year='.$year.'&month='.$month.'&day='.$day ; ?>
 <?php $hol_flg = ($hol_ary[$row][$col] == '') ? '' : ' hol'; ?>
       <td class="<?php echo $week_ary[$col].$hol_flg; ?>">
         <a href="<?php echo $entry_pash; ?>">
