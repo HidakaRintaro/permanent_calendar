@@ -54,9 +54,6 @@
   // 登録や更新、削除ボタンを押されたとき
   if (isset($_POST['submit'])) {
     
-    // 入力値の取得
-    $content = $_POST['content'];
-    
     // 改行コードの置換
     $in_content = str_replace($br_list, '%改行%', $_POST['content']);
 
@@ -65,34 +62,40 @@
       $err_msg = 'スケジュールが入力されていません。';
     } elseif ( empty(str_replace($sp_list, '', $_POST['content'])) ) {
       $err_msg = '空白や改行だけでは登録・更新できません。';
-
+      
       // 空白や改行だけの時は$contentを空文字に置き換える
-      $content = '';
+      // 更新時はもと値を戻す
+      if ($_POST['submit'] != 'update') {
+        $content = '';
+      }
     }
     // 更新ボタンを押されたが内容が変更されてないとき
     elseif ($_POST['submit'] == 'update') {
       foreach ($sch_ary as $row) {
         if ($pm_key == $row[0] && $in_content == $row[2]) {
           $err_msg = '内容が変更されていません。';
-          break;
-        } 
-      }
+        break;
+      } 
     }
+  }
+  
+  // 登録や更新、削除の処理の実行
+  if (empty($err_msg)) {
     
-    // 登録や更新、削除の処理の実行
-    if (empty($err_msg)) {
-      
-      // 登録処理
-      if ($_POST['submit'] == 'entry') {
+    // 入力値の取得
+    $content = $_POST['content'];
 
-        // 主キーの取得
-        $fp = fopen($sch_path, 'r');
-        while ($row = fgets($fp)) {
-          $row = explode(',', $row);
-          if ($max_key < $row[0]) {
-            $max_key = $row[0];
-          }
+    // 登録処理
+    if ($_POST['submit'] == 'entry') {
+      
+      // 主キーの取得
+      $fp = fopen($sch_path, 'r');
+      while ($row = fgets($fp)) {
+        $row = explode(',', $row);
+        if ($max_key < $row[0]) {
+          $max_key = $row[0];
         }
+      }
         fclose($fp);
         $pm_key = $max_key + 1;
 
